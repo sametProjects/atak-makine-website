@@ -42,3 +42,9 @@ npx prisma migrate dev --name add_user_based_tables
 **npx tsx ./db/seed**
 
 Bu komut ile ./db/seed dosyanda oluşturduğun datayı prisma ile veritabanına gönderirsin. Tek tek elle data girmene gerek kalmaz. Ardından 'npx prisma studio' ile eklenen dataları kontrol edebilirsin.
+
+## VPS SERVER e Alırken Notlar:
+
+- NEXTAUTH_URL → Dışarıdan erişilebilecek domain veya IP adresi olmalı.
+  Domain varsa: NEXTAUTH_URL=https://senindomainin.com
+  Domain yok, IP ile erişiyorsan: NEXTAUTH_URL=http://123.45.67.89:3000
