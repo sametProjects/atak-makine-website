@@ -36,3 +36,9 @@ Ne yapar: Schema değişikliklerini database'e uygular (tablolar oluşturur/gün
 - İlişki eklediğinde/değiştirdiğinde
 
 npx prisma migrate dev --name add_user_based_tables
+
+## Veritabanına Kolay yoldan veri ekleme
+
+**npx tsx ./db/seed**
+
+Bu komut ile ./db/seed dosyanda oluşturduğun datayı prisma ile veritabanına gönderirsin. Tek tek elle data girmene gerek kalmaz. Ardından 'npx prisma studio' ile eklenen dataları kontrol edebilirsin.
