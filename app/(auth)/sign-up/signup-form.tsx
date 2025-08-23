@@ -5,11 +5,12 @@ import { Label } from "@/components/ui/label";
 import { signUpDefaultValues } from "@/lib/constants";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { signUpUser } from "@/lib/actions/user.actions";
 
 const SignUpForm = () => {
-  const [data, action] = useFormState(signUpUser, {
+  const [data, action] = useActionState(signUpUser, {
     message: "",
     success: false,
   });
