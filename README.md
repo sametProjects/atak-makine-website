@@ -12,6 +12,9 @@ docker-compose down
 
 ## Prisma Komutları
 
+**npx prisma studio**
+studio yu açar.
+
 **npx prisma generate**
 
 Ne zaman çalıştırılır: schema.prisma dosyasında herhangi bir değişiklik yaptığında
