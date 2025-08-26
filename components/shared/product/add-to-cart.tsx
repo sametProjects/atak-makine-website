@@ -25,7 +25,7 @@ const AddToCart = ({ item }: { item: CartItem }) => {
     }
 
     toast({
-      description: `${item.name} added to the cart`,
+      description: res.message,
       action: (
         <ToastAction onClick={() => router.push("/cart")} altText="Go to cart">
           Go to cart
