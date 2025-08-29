@@ -16,3 +16,10 @@ export const signUpDefaultValues = {
   password: "",
   confirmPassword: "",
 };
+export const shippingAddressDefaultValues = {
+  fullName: "Samco Doe",
+  streetAddress: "Gungoren St",
+  city: "Anytown",
+  postalCode: "12345",
+  country: "USA",
+};
