@@ -1,8 +1,8 @@
 version: "3.9"
 services:
-  postgres:
+  database:
     image: postgres:16
-    container_name: my-postgres
+    container_name: atak-database
     restart: unless-stopped
     ports:
       - "5432:5432"
@@ -11,11 +11,34 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: mydb
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - database_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - atak-network
+
+  web:
+    build: .
+    container_name: atak-web
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@database:5432/mydb?schema=public"
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      - atak-network
+
 volumes:
-  db-data:
+  database_data:
+
+networks:
+  atak-network:
+    driver: bridge
