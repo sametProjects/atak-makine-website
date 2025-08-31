@@ -5,13 +5,13 @@ WORKDIR /app
 # package.json ve package-lock.json'ı kopyala
 COPY package*.json ./
 
-# Dependencies'leri yükle
-RUN npm ci --only=production
+# Dependencies'leri yükle (prisma generate olmadan)
+RUN npm ci --only=production --ignore-scripts
 
-# Uygulama kodunu kopyala
+# Uygulama kodunu kopyala (prisma dahil)
 COPY . .
 
-# Prisma generate
+# Şimdi prisma generate çalıştır
 RUN npx prisma generate
 
 # Next.js uygulamasını build et
