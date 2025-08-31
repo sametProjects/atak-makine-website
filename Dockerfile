@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Dependencies'leri yükle
-RUN npm ci --only=production --ignore-scripts
+RUN npm ci --only=production
 
 # Uygulama kodunu kopyala
 COPY . .
@@ -14,12 +14,7 @@ COPY . .
 # Prisma generate
 RUN npx prisma generate
 
-# Build sırasında DB bağlantısını geçici olarak devre dışı bırak
-ENV SKIP_ENV_VALIDATION=true
-
-# Next.js uygulamasını build et
-RUN npm run build
-
 EXPOSE 3000
 
-CMD ["sh", "-c", "npm run build && npm start"]
+# Build'i container çalışırken yap, veritabanı hazır olduktan sonra
+CMD ["sh", "-c", "npx prisma db push && npm run build && npm start"]
